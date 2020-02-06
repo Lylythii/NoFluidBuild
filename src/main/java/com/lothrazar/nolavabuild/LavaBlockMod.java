@@ -1,4 +1,7 @@
 package com.lothrazar.nolavabuild;
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import com.lothrazar.nolavabuild.setup.ClientProxy;
 import com.lothrazar.nolavabuild.setup.ConfigHandler;
 import com.lothrazar.nolavabuild.setup.IProxy;
@@ -10,15 +13,10 @@ import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLFingerprintViolationEvent;
-import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.fml.loading.FMLPaths;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 
-// The value here should match an entry in the META-INF/mods.toml file
-@Mod("nolavabuild")
+@Mod(LavaBlockMod.MODID)
 public class LavaBlockMod {
 
   private String certificateFingerprint = "@FINGERPRINT@";
@@ -32,10 +30,8 @@ public class LavaBlockMod {
     ConfigHandler.loadConfig(ConfigHandler.COMMON_CONFIG, FMLPaths.CONFIGDIR.get().resolve(MODID + ".toml"));
   }
 
-
   @SubscribeEvent
   public void onRightClickBlock(PlayerInteractEvent.RightClickBlock event) {
-    //    Blocks.WATER;
     BlockState current = event.getWorld().getBlockState(
         event.getPos().offset(event.getFace()));
     if (current.getBlock() == Blocks.LAVA
@@ -56,6 +52,6 @@ public class LavaBlockMod {
     // https://tutorials.darkhax.net/tutorials/jar_signing/
     String source = (event.getSource() == null) ? "" : event.getSource().getName() + " ";
     String msg = MODID + "Invalid fingerprint detected! The file " + source + "may have been tampered with. This version will NOT be supported by the author!";
-    System.out.println(msg);
+    //    System.out.println(msg);
   }
 }
