@@ -2,42 +2,50 @@ package com.lothrazar.nolavabuild;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import com.lothrazar.nolavabuild.setup.ClientProxy;
-import com.lothrazar.nolavabuild.setup.ConfigHandler;
-import com.lothrazar.nolavabuild.setup.IProxy;
-import com.lothrazar.nolavabuild.setup.ServerProxy;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
+import net.minecraft.block.BlockLiquid;
+import net.minecraft.block.state.IBlockState;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Blocks;
 import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.event.entity.player.PlayerInteractEvent;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.DistExecutor;
+import net.minecraftforge.event.world.BlockEvent;
 import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.event.lifecycle.FMLFingerprintViolationEvent;
-import net.minecraftforge.fml.loading.FMLPaths;
+import net.minecraftforge.fml.common.event.FMLFingerprintViolationEvent;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
-@Mod(LavaBlockMod.MODID)
+@Mod(modid = LavaBlockMod.MODID)
 public class LavaBlockMod {
 
   private String certificateFingerprint = "@FINGERPRINT@";
-  public static final IProxy proxy = DistExecutor.runForDist(() -> () -> new ClientProxy(), () -> () -> new ServerProxy());
+  //  public static final IProxy proxy = DistExecutor.runForDist(() -> () -> new ClientProxy(), () -> () -> new ServerProxy());
   public static final String MODID = "nolavabuild";
   private static final Logger LOGGER = LogManager.getLogger();
 
   public LavaBlockMod() {
-    //only for server starting
     MinecraftForge.EVENT_BUS.register(this);
-    ConfigHandler.loadConfig(ConfigHandler.COMMON_CONFIG, FMLPaths.CONFIGDIR.get().resolve(MODID + ".toml"));
   }
 
   @SubscribeEvent
-  public void onRightClickBlock(PlayerInteractEvent.RightClickBlock event) {
-    BlockState current = event.getWorld().getBlockState(
-        event.getPos().offset(event.getFace()));
-    if (current.getBlock() == Blocks.LAVA
-        && current.getFluidState().isSource()) {
-      event.setCanceled(true);
+  public void onRightClickBlock(BlockEvent.EntityPlaceEvent event) {
+    IBlockState current = event.getBlockSnapshot().getReplacedBlock();
+    if (!event.getWorld().isRemote
+        && event.getEntity() instanceof EntityPlayer
+        && current.getBlock() == Blocks.LAVA) {
+      //      System.out.println("? cancel " + current.getValue(BlockLiquid.LEVEL));
+      if (current.getValue(BlockLiquid.LEVEL) == 0)
+        event.setCanceled(true);
     }
+    //    IBlockState current = event.getWorld().getBlockState(
+    //        event.getPos().offset(event.getFace()));
+    //    && current.getFluidState().isSource()
+    //    if (current.getBlock() == Blocks.LAVA) {//  && current.getValue(BlockLiquid.LEVEL) == 0
+    //      System.out.println("? build " + current.getValue(BlockLiquid.LEVEL));
+    //      if (current.getValue(BlockLiquid.LEVEL) == 0) {
+    //        event.setCanceled(true);
+    //        return;
+    //      }
+    //      System.out.println("do not cancel " + current.getValue(BlockLiquid.LEVEL));
+    //    }
+    //    BlockEvent.EntityPlaceEvent
   }
   //  @SubscribeEvent
   //  public void onFluidPlaceBlockEvent(BlockEvent.FluidPlaceBlockEvent event) {
