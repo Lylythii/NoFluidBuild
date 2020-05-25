@@ -1,0 +1,21 @@
+{
+  "modListVersion": 2,
+  "modList": [{
+    "modid": "nolavabuild",
+    "name": "Cannot build over lava source blocks",
+    "description": "",
+  "version": "${version}",
+  "mcversion": "${mcversion}",
+    "url": "https://www.curseforge.com/minecraft/mc-mods/cannot-build-over-lava-source-blocks",
+    "updateUrl": "https://www.curseforge.com/minecraft/mc-mods/cannot-build-over-lava-source-blocks",
+    "authorList": [ "Lothrazar" ],
+    "credits": "Everyone who contributes to Minecraft, Minecraft Forge, and related projects",
+    "logoFile": "",
+    "screenshots": [  ],
+    "parent": "",
+    "requiredMods": [ "Forge" ],
+    "dependencies": [  ],
+    "dependants": [  ],
+    "useDependencyInformation": false
+  }]
+}
