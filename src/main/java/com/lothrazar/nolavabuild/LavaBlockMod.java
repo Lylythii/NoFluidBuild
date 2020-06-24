@@ -1,9 +1,6 @@
 package com.lothrazar.nolavabuild;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import com.lothrazar.nolavabuild.setup.ClientProxy;
-import com.lothrazar.nolavabuild.setup.ConfigHandler;
 import com.lothrazar.nolavabuild.setup.IProxy;
 import com.lothrazar.nolavabuild.setup.ServerProxy;
 import net.minecraft.block.BlockState;
@@ -14,20 +11,17 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLFingerprintViolationEvent;
-import net.minecraftforge.fml.loading.FMLPaths;
 
 @Mod(LavaBlockMod.MODID)
 public class LavaBlockMod {
 
-  private String certificateFingerprint = "@FINGERPRINT@";
   public static final IProxy proxy = DistExecutor.runForDist(() -> () -> new ClientProxy(), () -> () -> new ServerProxy());
   public static final String MODID = "nolavabuild";
-  private static final Logger LOGGER = LogManager.getLogger();
 
   public LavaBlockMod() {
     //only for server starting
     MinecraftForge.EVENT_BUS.register(this);
-    ConfigHandler.loadConfig(ConfigHandler.COMMON_CONFIG, FMLPaths.CONFIGDIR.get().resolve(MODID + ".toml"));
+    //    ConfigHandler.loadConfig(ConfigHandler.COMMON_CONFIG, FMLPaths.CONFIGDIR.get().resolve(MODID + ".toml"));
   }
 
   @SubscribeEvent
@@ -52,6 +46,6 @@ public class LavaBlockMod {
     // https://tutorials.darkhax.net/tutorials/jar_signing/
     String source = (event.getSource() == null) ? "" : event.getSource().getName() + " ";
     String msg = MODID + "Invalid fingerprint detected! The file " + source + "may have been tampered with. This version will NOT be supported by the author!";
-    //    System.out.println(msg);
+    System.out.println(msg);
   }
 }
