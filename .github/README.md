@@ -1,4 +1,14 @@
 # NoLavaBuild
+
+
+[![](http://cf.way2muchnoise.eu/333828.svg)](https://www.curseforge.com/minecraft/mc-mods/cannot-build-over-lava-source-blocks) 
+[![](http://cf.way2muchnoise.eu/versions/333828.svg)](https://www.curseforge.com/minecraft/mc-mods/cannot-build-over-lava-source-blocks)
+[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
+[![Twitter Badge](https://img.shields.io/badge/contact-twitter-blue.svg)](https://twitter.com/lothrazar)
+ 
+ 
+
+
 Block building over lava source blocks
 
 A Forge mod for Minecraft Java
@@ -11,4 +21,4 @@ A Forge mod for Minecraft Java
 
 - Open as a Gradle project in Eclipse (or your favorite Java IDE)
 
-[![](http://cf.way2muchnoise.eu/333828.svg)](https://www.curseforge.com/minecraft/mc-mods/cannot-build-over-lava-source-blocks) [![](http://cf.way2muchnoise.eu/versions/333828.svg)](https://www.curseforge.com/minecraft/mc-mods/cannot-build-over-lava-source-blocks)
+[![](https://c5.patreon.com/external/logo/become_a_patron_button.png)](https://www.patreon.com/lothrazar)
