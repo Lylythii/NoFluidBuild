@@ -1,21 +1,16 @@
 package com.lothrazar.nolavabuild;
 
-import com.lothrazar.nolavabuild.setup.ClientProxy;
-import com.lothrazar.nolavabuild.setup.IProxy;
-import com.lothrazar.nolavabuild.setup.ServerProxy;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLFingerprintViolationEvent;
 
 @Mod(LavaBlockMod.MODID)
 public class LavaBlockMod {
 
-  public static final IProxy proxy = DistExecutor.runForDist(() -> () -> new ClientProxy(), () -> () -> new ServerProxy());
   public static final String MODID = "nolavabuild";
 
   public LavaBlockMod() {
@@ -46,6 +41,6 @@ public class LavaBlockMod {
     // https://tutorials.darkhax.net/tutorials/jar_signing/
     String source = (event.getSource() == null) ? "" : event.getSource().getName() + " ";
     String msg = MODID + "Invalid fingerprint detected! The file " + source + "may have been tampered with. This version will NOT be supported by the author!";
-    System.out.println(msg);
+    //    System.out.println(msg);
   }
 }
