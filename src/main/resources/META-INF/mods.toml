@@ -27,7 +27,7 @@ displayURL="https://www.curseforge.com/minecraft/mc-mods/cannot-build-over-lava-
 # A file name (in the root of the mod JAR) containing a logo for display
 logoFile="nolavabuild.png" #optional
 # A text field displayed in the mod UI
-credits="Thanks for this example mod goes to Java" #optional
+credits="" #optional
 # A text field displayed in the mod UI
 authors="Lothrazar" #optional
 # The description text for the mod (multi line!) (#mandatory)

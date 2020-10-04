@@ -29,9 +29,10 @@ public class LavaBlockMod {
     }
   }
   //  @SubscribeEvent
-  //  public void onFluidPlaceBlockEvent(BlockEvent.FluidPlaceBlockEvent event) {
-  //    LOGGER.info("BlockEvent.FluidPlaceBlockEvent " + event.getNewState());
-  //    if (event.getNewState().getBlock() == Blocks.COBBLESTONE) {
+  //  public void onFluidPlaceBlockEvent(BlockEvent.EntityPlaceEvent event) {
+  //    System.out.println("BlockEvent. bbb  " + event.getPlacedBlock());
+  //    System.out.println("BlockEvent. eee " + event.getEntity());
+  //    if (event.getEntity() instanceof FallingBlockEntity) {
   //      event.setCanceled(true);
   //    }
   //  }
