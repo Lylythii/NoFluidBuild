@@ -11,6 +11,10 @@ import net.minecraftforge.fml.common.event.FMLFingerprintViolationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
+import net.minecraftforge.fluids.Fluid;
+import net.minecraftforge.fluids.FluidRegistry;
+import net.minecraftforge.fluids.IFluidBlock;
+
 @Mod(modid = LavaBlockMod.MODID, certificateFingerprint = "@FINGERPRINT@")
 public class LavaBlockMod {
 
@@ -25,19 +29,21 @@ public class LavaBlockMod {
   @SubscribeEvent
   public void onRightClickBlock(PlayerInteractEvent.RightClickBlock event) {
     IBlockState current = event.getWorld().getBlockState(event.getPos().offset(event.getFace()));
-    if ((current.getBlock() == Blocks.LAVA
-        || current.getBlock() == Blocks.FLOWING_LAVA)
+    if ((current.getBlock() == FluidRegistry.WATER
+        || current.getBlock() == FluidRegistry.WATER)
         && current.getValue(BlockLiquid.LEVEL) == 0) {
       event.setCanceled(true);
     }
   }
-  //  @SubscribeEvent
-  //  public void onFluidPlaceBlockEvent(BlockEvent.FluidPlaceBlockEvent event) {
-  //    LOGGER.info("BlockEvent.FluidPlaceBlockEvent " + event.getNewState());
-  //    if (event.getNewState().getBlock() == Blocks.COBBLESTONE) {
-  //      event.setCanceled(true);
-  //    }
-  //  }
+  @SubscribeEvent
+  public void onRightClickBlock(PlayerInteractEvent.RightClickBlock event) {
+    IBlockState current = event.getWorld().getBlockState(event.getPos().offset(event.getFace()));
+    if ((current.getBlock() == FluidRegistry.LAVA
+        || current.getBlock() == FluidRegistry.LAVA)
+        && current.getValue(BlockLiquid.LEVEL) == 0) {
+      event.setCanceled(true);
+    }
+  }
 
   @EventHandler
   public void onFingerprintViolation(FMLFingerprintViolationEvent event) {
